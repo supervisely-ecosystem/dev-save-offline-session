@@ -20,3 +20,4 @@ app.mount("/static", StaticFiles(directory=os.path.join(app_root_directory, 'sta
 
 templates_env = Jinja2Templates(directory=os.path.join(app_root_directory, 'templates'))
 
+
