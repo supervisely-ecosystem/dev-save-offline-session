@@ -1,19 +1,13 @@
 from fastapi import Request, Depends
 
+from supervisely.app.fastapi import available_after_shutdown
 import src.sly_globals as g
 
 import src.example_card
 
 
-# @g.app.get("/")
-# def read_index(request: Request):
-#     template = g.templates_env.TemplateResponse('index.html', {'request': request})
-#     with open('/Users/qanelph/Desktop/work/supervisely/dev-save-offline-session/rendered.html', 'wb') as file:
-#         file.write(template.body)
-#
-#     print(template)
-#     return g.templates_env.TemplateResponse('index.html', {'request': request})
+@g.app.get("/")
+@available_after_shutdown
+def read_index(request: Request):
+    return g.templates_env.TemplateResponse('index.html', {'request': request}), g.app
 
-template = g.templates_env.TemplateResponse('index.html', {'request': None})
-with open('/Users/qanelph/Desktop/work/supervisely/dev-save-offline-session/rendered.html', 'wb') as file:
-    file.write(template.body)
