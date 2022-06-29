@@ -4,7 +4,6 @@ from pathlib import Path
 from fastapi import FastAPI
 from supervisely.sly_logger import logger
 from starlette.staticfiles import StaticFiles
-from fastapi_signals import SignalMiddleware, signal
 
 import supervisely
 from supervisely.app.fastapi import create, Jinja2Templates
@@ -15,8 +14,6 @@ logger.info(f"App root directory: {app_root_directory}")
 # api = supervisely.Api.from_env()
 app = FastAPI()
 sly_app = create()
-
-app.add_middleware(SignalMiddleware, handler=signal)
 
 app.mount("/sly", sly_app)
 app.mount("/static", StaticFiles(directory=os.path.join(app_root_directory, 'static')), name="static")
