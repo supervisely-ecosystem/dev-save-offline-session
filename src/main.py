@@ -3,7 +3,7 @@ from fastapi import Request
 import src.sly_globals as g
 from supervisely.app.fastapi import available_after_shutdown
 
-import example_card
+import src.example_card
 
 
 @g.app.get("/")
